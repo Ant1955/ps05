@@ -25,3 +25,21 @@ class DivannewparsSpider(scrapy.Spider):
                'url': divan.css('a').attrib['href']
            }
 
+
+def run_scrapy_spider():
+    command = ["scrapy", "crawl", "divannewpars", "-o", "output.csv"]
+
+    with open("output.log", "w") as logfile:
+        # Redirect stdout and stderr to the log file
+        process = subprocess.run(command, stdout=logfile, stderr=subprocess.STDOUT, text=True)
+
+    # Check if the process completed successfully
+    if process.returncode == 0:
+        print("Scrapy spider ran successfully.")
+    else:
+        print(f"Scrapy spider failed with return code {process.returncode}")
+
+
+if __name__ == "__main__":
+    run_scrapy_spider()
+
