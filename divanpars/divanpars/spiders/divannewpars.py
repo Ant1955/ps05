@@ -1,4 +1,7 @@
 import scrapy
+import subprocess
+import logging
+from scrapy.utils.log import configure_logging
 
 class DivannewparsSpider(scrapy.Spider):
    name = "divannewpars"
@@ -21,3 +24,21 @@ class DivannewparsSpider(scrapy.Spider):
                # Атрибуты — это настройки тегов
                'url': divan.css('a').attrib['href']
            }
+configure_logging(install_root_handler=False)
+logging.basicConfig(
+    format='%(levelname)s: %(message)s',
+    level=logging.WARNING  # Устанавливаем уровень логирования на WARNING, чтобы подавить Info и Debug
+)
+
+# Выполнение команды scrapy crawl divannewpars
+# process = subprocess.run(['scrapy', 'crawl', 'divannewpars','--set', 'LOG_STDOUT=True', '--set', 'LOG_FILE='],
+# stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+# Read the output line by line
+# for line in process.stdout:
+#    print(line.strip())
+
+# To capture the complete output
+# output, errors = process.communicate()
+
+# print("Output:", output)
+# print("Errors:", errors)
