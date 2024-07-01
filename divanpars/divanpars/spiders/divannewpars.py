@@ -25,7 +25,7 @@ class DivannewparsSpider(scrapy.Spider):
                'url': divan.css('a').attrib['href']
            }
 
-
+#  scrapy crawl divannewpars -o output.csv > output.log 2>&1
 def run_scrapy_spider():
     command = ["scrapy", "crawl", "divannewpars", "-o", "output.csv"]
 
