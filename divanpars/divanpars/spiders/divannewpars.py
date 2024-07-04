@@ -28,12 +28,12 @@ class DivannewparsSpider(scrapy.Spider):
 #  scrapy crawl divannewpars -o output.csv > output.log 2>&1
 def run_scrapy_spider():
     command = ["scrapy", "crawl", "divannewpars", "-o", "output.csv"]
-
+    # выполняем команду в терминале и получаем ее результат
     with open("output.log", "w") as logfile:
-        # Redirect stdout and stderr to the log file
+        # Передаем команду и поток для логирования
         process = subprocess.run(command, stdout=logfile, stderr=subprocess.STDOUT, text=True)
 
-    # Check if the process completed successfully
+    # Проверяем, что команда завершилась успешно
     if process.returncode == 0:
         print("Scrapy spider ran successfully.")
     else:
